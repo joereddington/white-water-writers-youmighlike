@@ -1,0 +1,29 @@
+\documentclass{book}
+\usepackage{xcolor}
+\usepackage{eso-pic}
+\usepackage{lipsum}
+\title{You might also like...}
+\makeatletter
+\newcommand\frameatpage[3]{%
+  \linethickness{#3}%
+  \AddToShipoutPicture*{%
+    \AtPageLowerLeft{%%page-border
+      \put(0,0){\color{#1}\rule{\paperwidth}{\paperheight}}%
+      \put(\LenToUnit{\@wholewidth},\LenToUnit{\@wholewidth}){%
+       \color{#2}\framebox(\LenToUnit{\dimexpr\paperwidth-2\@wholewidth\relax},%
+                  \LenToUnit{\dimexpr\paperheight-2\@wholewidth\relax}){}%
+      }%
+    }%
+  }%
+}
+
+\makeatother
+\begin{document}
+\frameatpage{white}{black}{18pt}
+\maketitle
+\frameatpage{white}{black}{18pt}
+\lipsum
+\chapter{foo}
+\end{document}
+
+% This came entirely from https://tex.stackexchange.com/questions/25603/how-can-i-draw-a-border-around-a-title-page 
